@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\GetExchangeRateRequest;
 use App\Http\Requests\StoreExchangeRateRequest;
 use App\Models\ExchangeRate;
-use Illuminate\Http\Request;
 
 class ExchangeRateController extends Controller
 {
