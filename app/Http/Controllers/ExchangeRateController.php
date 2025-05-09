@@ -49,7 +49,22 @@ class ExchangeRateController extends Controller
      */
     public function store(StoreExchangeRateRequest $request)
     {
+        $activity = activity()
+            ->causedBy($request->user()) 
+            ->withProperties([
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+                'input_data' => $request->safe()->except(['password', 'token'])
+            ]);
+
         try {
+
+            $existingRate = ExchangeRate::where([
+                'date' => $request->date,
+                'base_currency' => $request->base_currency,
+                'target_currency' => $request->target_currency
+            ])->first();
+
             $rate = ExchangeRate::updateOrCreate(
                 [
                     'date' => $request->date,
@@ -59,14 +74,32 @@ class ExchangeRateController extends Controller
                 ['rate' => $request->rate]
             );
 
+            $eventType = $existingRate ? 'updated' : 'created';
+
+            $activity->performedOn($rate)
+                ->withProperties([
+                    'previous_rate' => $existingRate ? $existingRate->rate : null,
+                    'new_rate' => $rate->rate,
+                    'changes' => $existingRate ? $rate->getChanges() : $rate->toArray()
+                ])
+                ->log("exchange_rate_{$eventType}");
+
             return response()->json([
                 'message' => 'Exchange rate saved successfully',
-                'data' => $rate
+                'data' => $rate,
             ], 201);
+
         } catch (\Exception $e) {
+
+            $activity->withProperties([
+                    'error' => $e->getMessage(),
+                    'error_trace' => config('app.debug') ? $e->getTraceAsString() : null
+                ])
+                ->log('exchange_rate_save_failed');
+
             return response()->json([
                 'message' => 'Failed to save exchange rate',
-                'error' => $e->getMessage()
+                'error' => config('app.debug') ? $e->getMessage() : 'An error occurred'
             ], 500);
         }
     }

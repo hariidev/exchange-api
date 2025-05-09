@@ -154,6 +154,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "activity_log",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4|Zfa9imyTNyP5MW8HrF7D9c9PEVplNYbn9Bbq9vvi7fa74b90",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/exchange-rate/activities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"exchange-rate",
+						"activities"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

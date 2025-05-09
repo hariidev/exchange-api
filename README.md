@@ -22,3 +22,7 @@ Postman response for login()
 Postman response after logout()
 
 ![alt text](image-4.png)
+
+Postman response for activitylog
+
+![alt text](image-5.png)
