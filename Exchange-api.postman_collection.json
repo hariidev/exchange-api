@@ -27,10 +27,31 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "StoreExchangeRates",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2023-05-19\",\r\n    \"base_currency\": \"USD\",\r\n    \"target_currency\": \"LKR\",\r\n    \"rate\": 200.1234\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/exchange-rates",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"exchange-rates"
+					]
+				}
 			},
 			"response": []
 		}
