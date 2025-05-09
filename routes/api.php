@@ -11,4 +11,6 @@ Route::get('usd-rates', [ExchangeRateController::class, 'index'])
 Route::post('exchange-rates', [ExchangeRateController::class, 'store'])
     ->middleware('throttle:60,1');
 
+//Authentication
 Route::post('register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);

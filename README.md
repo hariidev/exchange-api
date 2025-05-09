@@ -12,3 +12,8 @@ Postman response for store()
 Postman response for register() 
 
 ![alt text](image-2.png)
+
+
+Postman response for login()
+
+![alt text](image-3.png)
