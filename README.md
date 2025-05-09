@@ -17,3 +17,8 @@ Postman response for register()
 Postman response for login()
 
 ![alt text](image-3.png)
+
+
+Postman response after logout()
+
+![alt text](image-4.png)
