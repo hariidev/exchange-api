@@ -14,3 +14,6 @@ Route::get('usd-rates', [ExchangeRateController::class, 'index'])
 Route::get('/greeting', function () {
     return 'Hello World';
 });
+
+Route::post('exchange-rates', [ExchangeRateController::class, 'store'])
+    ->middleware('throttle:60,1');

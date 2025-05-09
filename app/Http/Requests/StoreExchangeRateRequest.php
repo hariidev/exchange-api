@@ -11,7 +11,7 @@ class StoreExchangeRateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,9 +22,10 @@ class StoreExchangeRateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => 'require|date|date|before_or_equal:today',
-            'currency' => 'required|string|in:USD,AUD,CAD,GBP',
-            'rate' => 'required|numeric|min:0'
+            'date' => 'required|date|date|before_or_equal:today',
+            'base_currency' => 'required|string|in:USD,AUD,CAD,GBP,LKR',
+            'target_currency' => 'required|string|in:USD,AUD,CAD,GBP,LKR',
+            'rate' => 'required|min:0|numeric'
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GetExchangeRateRequest;
+use App\Http\Requests\StoreExchangeRateRequest;
 use App\Models\ExchangeRate;
 use Illuminate\Http\Request;
 
@@ -45,50 +46,29 @@ class ExchangeRateController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreExchangeRateRequest $request)
     {
-        //
-    }
+        try {
+            $rate = ExchangeRate::updateOrCreate(
+                [
+                    'date' => $request->date,
+                    'base_currency' => $request->base_currency,
+                    'target_currency' => $request->target_currency
+                ],
+                ['rate' => $request->rate]
+            );
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ExchangeRate $exchangeRate)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ExchangeRate $exchangeRate)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ExchangeRate $exchangeRate)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ExchangeRate $exchangeRate)
-    {
-        //
+            return response()->json([
+                'message' => 'Exchange rate saved successfully',
+                'data' => $rate
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to save exchange rate',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 }
