@@ -20,4 +20,9 @@ class ExchangeRate extends Model
         'date' => 'date:Y-m-d',
         'rate' => 'decimal:4'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }
