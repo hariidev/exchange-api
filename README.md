@@ -7,3 +7,8 @@ Postman response for index()
 Postman response for store() 
 
 ![alt text](image-1.png)
+
+
+Postman response for register() 
+
+![alt text](image-2.png)
