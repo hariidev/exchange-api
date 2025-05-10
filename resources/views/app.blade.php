@@ -8,11 +8,6 @@
 </head>
 <body>
     <div id="app">
-        <nav>
-            <router-link to="/">View Rates</router-link>
-            <router-link to="/admin/rates">Manage Rates</router-link>
-        </nav>
-        <router-view></router-view>
     </div>
 </body>
 </html>

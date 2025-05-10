@@ -30,7 +30,6 @@ class ExchangeRateController extends Controller
             ], 404);
         }
 
-        // Calculate average
         $average = $rates->avg('rate');
 
         return response()->json([
@@ -59,16 +58,18 @@ class ExchangeRateController extends Controller
 
         try {
 
+            $baseCurrency = $request->input('base_currency', 'USD');
+
             $existingRate = ExchangeRate::where([
                 'date' => $request->date,
-                'base_currency' => $request->base_currency,
+                'base_currency' => $baseCurrency,
                 'target_currency' => $request->target_currency
             ])->first();
 
             $rate = ExchangeRate::updateOrCreate(
                 [
                     'date' => $request->date,
-                    'base_currency' => $request->base_currency,
+                    'base_currency' => $baseCurrency,
                     'target_currency' => $request->target_currency
                 ],
                 ['rate' => $request->rate]

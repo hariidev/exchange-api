@@ -23,7 +23,7 @@ class StoreExchangeRateRequest extends FormRequest
     {
         return [
             'date' => 'required|date|date|before_or_equal:today',
-            'base_currency' => 'required|string|in:USD,AUD,CAD,GBP,LKR',
+            'base_currency' => 'string|in:USD,AUD,CAD,GBP,LKR',
             'target_currency' => 'required|string|in:USD,AUD,CAD,GBP,LKR',
             'rate' => 'required|min:0|numeric'
         ];

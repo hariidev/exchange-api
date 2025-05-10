@@ -1,4 +1,17 @@
 <template>
+
+    <div class="landing-page">
+        <h1>Exchange Rates</h1>
+        <div v-if="!isAuthenticated">
+            <router-link to="/login">Login</router-link> |
+            <router-link to="/register">Register</router-link>
+        </div>
+        <div v-else>
+            <button @click="goToForm">Go to Dashboard</button>
+            <button @click="logout">Logout</button>
+        </div>
+    </div>
+
     <div class="exchange-rates">
         <h2>Exchange Rates (USD to LKR)</h2>
 
@@ -37,6 +50,27 @@
 import axios from 'axios';
 
 export default {
+    computed: {
+        isAuthenticated() {
+            return !!localStorage.getItem('auth_token');
+        }
+    },
+    methods: {
+        goToForm() {
+            this.$router.push({ name: 'exchange-rate-form' });
+        },
+        async logout() {
+            try {
+                await axios.post('/api/logout', {}, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                });
+            } catch (_) { }
+            localStorage.removeItem('auth_token');
+            this.$router.push({ name: 'login' });
+        }
+    },
     data() {
         return {
             selectedDate: new Date().toISOString().split('T')[0],
