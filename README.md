@@ -30,6 +30,8 @@ Node.js & npm
 
 MySQL or any other supported database
 
+--------------------------------------------------------------------------------
+
 1. Clone the Repository
 
 git clone https://bitbucket.org/hariidev/exchange-api_2.0.git
@@ -162,6 +164,8 @@ Response:
     "updated_at": "2025-05-09T10:00:00.000000Z"
   }
 ]
+
+--------------------------------------------------------------------------------
 
 5. Submit Exchange Rate
 
