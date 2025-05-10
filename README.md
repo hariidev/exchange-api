@@ -17,29 +17,6 @@ Postman Collection: Easily test API endpoints.
 
 --------------------------------------------------------------------------------
 
-📂 Project Structure
-
-exchange-api_2.0/
-├── app/
-├── resources/
-│   ├── js/
-│   │   ├── components/
-│   │   │   ├── ExchangeRates.vue
-│   │   │   ├── ExchangeRateForm.vue
-│   │   │   ├── Login.vue
-│   │   │   └── Register.vue
-│   │   ├── App.vue
-│   │   ├── app.js
-│   │   └── router.js
-├── routes/
-│   └── api.php
-├── public/
-├── vite.config.js
-├── package.json
-└── ...
-
---------------------------------------------------------------------------------
-
 🛠️ Installation
 
 Prerequisites
@@ -92,7 +69,7 @@ A Postman collection is available to test the API endpoints.
 
 Import the Collection
 
-https://bitbucket.org/hariidev/exchange-api_2.0/raw/master/postman_collection.json
+https://bitbucket.org/hariidev/exchange-api_2.0/raw/master/Exchange-api.postman_collection.json
 
 
 Available Endpoints
@@ -142,7 +119,7 @@ Response:
 
 --------------------------------------------------------------------------------
 
-Logout
+3. Logout
 
 URL: /api/logout
 Method: POST
@@ -159,7 +136,34 @@ Response:
 
 --------------------------------------------------------------------------------
 
-4. Submit Exchange Rate
+4. Fetch Exchange Rates (index)
+
+URL: /api/exchange-rates
+Method: GET
+Auth Required: ❌ No (public endpoint)
+
+Response:
+
+[
+  {
+    "id": 1,
+    "date": "2025-05-10",
+    "currency": "USD",
+    "rate": "305.00",
+    "created_at": "2025-05-10T10:00:00.000000Z",
+    "updated_at": "2025-05-10T10:00:00.000000Z"
+  },
+  {
+    "id": 2,
+    "date": "2025-05-09",
+    "currency": "AUD",
+    "rate": "202.15",
+    "created_at": "2025-05-09T10:00:00.000000Z",
+    "updated_at": "2025-05-09T10:00:00.000000Z"
+  }
+]
+
+5. Submit Exchange Rate
 
 URL: /api/exchange-rates
 Method: POST
