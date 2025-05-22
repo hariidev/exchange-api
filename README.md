@@ -71,7 +71,7 @@ A Postman collection is available to test the API endpoints.
 
 Import the Collection
 
-https://bitbucket.org/hariidev/exchange-api_2.0/raw/master/Exchange-api.postman_collection.json
+https://github.com/hariidev/exchange-api/blob/master/Exchange-api.postman_collection.json
 
 
 Available Endpoints
